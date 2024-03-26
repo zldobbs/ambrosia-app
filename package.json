@@ -1,0 +1,8 @@
+{
+  "name": "ambrosia",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Zach Dobbs <dobbszach@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
