@@ -9,17 +9,16 @@ The app for ambrosia
 1. Node: https://nodejs.org/en
 1. yarn: `npm install -g yarn`
 1. Emulator(s)
-    - Windows + Linux
-        - Android: https://docs.expo.dev/workflow/android-studio-emulator/
-    - Mac
-        - xcode
+    - Android: https://docs.expo.dev/workflow/android-studio-emulator/
+    - IOS:
+        - Only supported on Macs
 1. Node modules: `yarn install` within the project root
 
 ### Running
 
 1. Start emulator
    - Android: Launch from within Android Studio > Device Manager
-   - Mac: Expo automatically launch
+   - IOS: Expo automatically launch
 1. Launch app using `yarn <ios|android>`
 
 [More Info](https://reactnative.dev/docs/environment-setup?package-manager=yarn)
