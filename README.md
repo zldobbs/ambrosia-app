@@ -13,6 +13,7 @@ The app for ambrosia
     - IOS:
         - Only supported on Macs
         - Install Xcode via the App Store
+            - Setup emulator within XCode
 1. Node modules: `yarn install` within the project root
 
 ### Running
