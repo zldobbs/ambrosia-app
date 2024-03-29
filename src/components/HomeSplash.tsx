@@ -3,13 +3,16 @@
 // Use Axios for HTTP requests
 // TODO: Create an instance for the client to use a consistent configuration
 import axios, { AxiosResponse } from "axios";
+import { useState } from "react";
+import { Text } from "react-native";
 
 // TODO: Better use of constants/config
 const BACKEND_URL = "http://localhost:8080"
 
+// Could use props here...
 export const HomeSplash = () => {
-    // TODO: Use more react-specific features here
-    //       EX: STATE, HOOKS, REDUX, ...
+    // Demonstrate state usage
+    const [isServerUp, setIsServerUp] = useState(false);
 
     // TODO: More graceful way to handle the async/promise stuff here?
     var serverUp = false;
@@ -17,16 +20,16 @@ export const HomeSplash = () => {
         (response: AxiosResponse) => {
             // TODO: Don't log this in prod!
             console.log(response);
-            serverUp = true;
+            setIsServerUp(true);
         },
         (error) => {
             // TODO: Don't log this in prod!
             console.log(error);
-            serverUp = false;
+            setIsServerUp(false);
         }
     );
 
     return (
-        <h1>The server connection is: {serverUp ? 'good' : 'bad'}!</h1>
+        <Text>The server connection is: {isServerUp ? 'good' : 'bad'}!</Text>
     );
 }
