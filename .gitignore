@@ -8,6 +8,9 @@ node_modules/
 dist/
 web-build/
 
+# Android
+.idea/
+
 # Native
 *.orig.*
 *.jks
