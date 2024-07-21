@@ -4,10 +4,13 @@
 // TODO: Create an instance for the client to use a consistent configuration
 import axios, { AxiosResponse } from "axios";
 import { useState } from "react";
-import { Text } from "react-native";
+import { Platform, Text } from "react-native";
 
 // TODO: Better use of constants/config
-const BACKEND_URL = "http://localhost:8080"
+const BACKEND_PORT = 8080
+// Android exposes the host machine's localhost as '10.0.2.2'
+const BACKEND_BASE_URL = Platform.OS == "android" ? "http://10.0.2.2" : "http://localhost"
+const BACKEND_URL = `${BACKEND_BASE_URL}:${BACKEND_PORT}`
 
 // Could use props here...
 export const HomeSplash = () => {
