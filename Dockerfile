@@ -3,8 +3,7 @@ FROM node:lts
 WORKDIR /usr/src/ambrosia-app
 
 # Copy dependency specifiers first to leverage w/ Docker layer caching
-COPY package.json .
-COPY yarn.lock .
+COPY package.json yarn.lock ./
 
 # Install deps
 RUN yarn install
@@ -22,5 +21,8 @@ EXPOSE 19002
 EXPOSE 8081
 
 # Start on web
-# TODO: Support starting for ios/android using ARGs
-CMD ["yarn", "web"]
+# Default to starting the web version, but allow platform overrides using ARG
+ARG PLATFORM=web
+ENV PLATFORM=${PLATFORM}
+
+CMD yarn ${PLATFORM}
