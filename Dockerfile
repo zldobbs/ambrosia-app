@@ -3,7 +3,7 @@ FROM node:lts
 WORKDIR /usr/src/ambrosia-app
 
 # Copy dependency specifiers first to leverage w/ Docker layer caching
-COPY package*.json .
+COPY package.json .
 COPY yarn.lock .
 
 # Install deps

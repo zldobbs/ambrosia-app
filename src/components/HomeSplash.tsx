@@ -1,12 +1,12 @@
 // Example component to help showcase how code base should be organized
 
+import ambrosiaConfig from "../../ambrosia.config";
+
 // Use Axios for HTTP requests
 // TODO: Create an instance for the client to use a consistent configuration
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { useState } from "react";
 import { Text } from "react-native";
-
-const {BACKEND_URL} = process.env;
 
 // Could use props here...
 export const HomeSplash = () => {
@@ -14,7 +14,7 @@ export const HomeSplash = () => {
     const [isServerUp, setIsServerUp] = useState(false);
 
     // TODO: More graceful way to handle the async/promise stuff here?
-    axios.get(`${BACKEND_URL}/heartbeat`).then(
+    axios.get(`${ambrosiaConfig.BACKEND_URL}/heartbeat`).then(
         (response: AxiosResponse) => {
             // TODO: Don't log this in prod!
             console.log(response);
