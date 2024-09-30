@@ -2,12 +2,11 @@
 
 // Use Axios for HTTP requests
 // TODO: Create an instance for the client to use a consistent configuration
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 import { useState } from "react";
 import { Text } from "react-native";
 
-// TODO: Better use of constants/config
-const BACKEND_URL = "http://localhost:8080"
+const {BACKEND_URL} = process.env;
 
 // Could use props here...
 export const HomeSplash = () => {
@@ -15,21 +14,20 @@ export const HomeSplash = () => {
     const [isServerUp, setIsServerUp] = useState(false);
 
     // TODO: More graceful way to handle the async/promise stuff here?
-    var serverUp = false;
     axios.get(`${BACKEND_URL}/heartbeat`).then(
         (response: AxiosResponse) => {
             // TODO: Don't log this in prod!
             console.log(response);
             setIsServerUp(true);
         },
-        (error) => {
+        (error: AxiosError) => {
             // TODO: Don't log this in prod!
-            console.log(error);
+            console.log(error['message']);
             setIsServerUp(false);
         }
     );
 
     return (
-        <Text>The server connection is: {isServerUp ? 'good' : 'bad'}!</Text>
+        <Text>The server is {isServerUp ? 'good' : 'bad'}!</Text>
     );
 }
