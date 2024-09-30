@@ -6,7 +6,7 @@ import ambrosiaConfig from "../../ambrosia.config";
 // TODO: Create an instance for the client to use a consistent configuration
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { useState } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 // Could use props here...
 export const HomeSplash = () => {
@@ -15,19 +15,18 @@ export const HomeSplash = () => {
 
     // TODO: More graceful way to handle the async/promise stuff here?
     axios.get(`${ambrosiaConfig.BACKEND_URL}/heartbeat`).then(
-        (response: AxiosResponse) => {
-            // TODO: Don't log this in prod!
-            console.log(response);
+        (_: AxiosResponse) => {
             setIsServerUp(true);
         },
-        (error: AxiosError) => {
-            // TODO: Don't log this in prod!
-            console.log(error['message']);
+        (_: AxiosError) => {
             setIsServerUp(false);
         }
     );
 
     return (
-        <Text>The server is {isServerUp ? 'good' : 'bad'}!</Text>
+        <View>
+            <Text>Welcome to Ambrosia!</Text>
+            <Text>The server connection is {isServerUp ? 'good' : 'bad'}!</Text>
+        </View>
     );
 }

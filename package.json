@@ -17,6 +17,7 @@
     "graphql": "^16.9.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.53.0",
     "react-native": "0.73.6",
     "react-native-web": "~0.19.6"
   },

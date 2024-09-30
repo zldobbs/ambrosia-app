@@ -6,6 +6,8 @@ import ambrosiaConfig from "./ambrosia.config";
 
 import { HomeSplash } from "./src/components/HomeSplash";
 import { IngredientList } from "./src/components/IngredientList";
+import { NewIngredientForm } from "./src/components/NewIngredientForm";
+import { styles } from "./styles";
 
 const client = new ApolloClient({
   uri: `${ambrosiaConfig.BACKEND_URL}/graphql`,
@@ -17,20 +19,12 @@ const App = () => {
     <ApolloProvider client={client}>
       <View style={styles.container}>
         <HomeSplash></HomeSplash>
+        <NewIngredientForm></NewIngredientForm>
         <IngredientList></IngredientList>
         <StatusBar style="auto" />
       </View>
     </ApolloProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default App;

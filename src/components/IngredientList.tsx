@@ -1,51 +1,31 @@
 // Render a list of ingredients currently available
 
-import { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
-// TODO: Move me
-interface User {
-    userId: number,
-    name: string,
-}
-
-interface Ingredient {
-    ingredientId: number,
-    name: string,
-    description: string,
-    user: User,
-}
-
-// TODO: Move me
-const GET_INGREDIENTS = gql`
-    query GetIngredients {
-        ingredients {
-            ingredientId
-            name
-            description
-            user {
-                userId
-                name
-            }
-        }
-    }
-`
-
-// const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+import { ErrorMessage } from "./ErrorMessage";
+import { Loading } from "./Loading";
+import { IngredientListItem } from "./IngredientListItem";
+import { INGREDIENTS } from "../gql/queries";
+import { FlatList, Text, View } from "react-native";
 
 export const IngredientList = () => {
-    const { loading, error, data } = useQuery(GET_INGREDIENTS);
+    const { loading, error, data } = useQuery(INGREDIENTS);
 
-    if (loading) return "Loading...";
-    if (error) return `Error! ${error.message}`;
+    if (loading) return <Loading />;
+    if (error) return <ErrorMessage message={error.message} />;
+
+    const { ingredients } = data;
 
     return (
-        <ul>
-            {data.ingredients.map((ingredient: Ingredient) => (
-                <li key={ingredient.ingredientId}>
-                    <b>{ingredient.name}:</b> {ingredient.description} <i>(created by: {ingredient.user.name})</i>
-                </li>
-            ))}
-        </ul>
+        <View>
+            <Text>Current Ingredients:</Text>
+            <FlatList
+                data={ingredients}
+                keyExtractor={(item) => item.ingredientId.toString()}
+                renderItem={({ item }) => (
+                    <IngredientListItem ingredient={item} />
+                )}
+            />
+        </View>
     );
 }
