@@ -7,6 +7,7 @@ import { Loading } from "./Loading";
 import { IngredientListItem } from "./IngredientListItem";
 import { INGREDIENTS } from "../gql/queries";
 import { FlatList, Text, View } from "react-native";
+import { styles } from "../../styles";
 
 export const IngredientList = () => {
     const { loading, error, data } = useQuery(INGREDIENTS);
@@ -18,13 +19,14 @@ export const IngredientList = () => {
 
     return (
         <View>
-            <Text>Current Ingredients:</Text>
+            <Text style={styles.h3}>Current Ingredients:</Text>
             <FlatList
                 data={ingredients}
                 keyExtractor={(item) => item.ingredientId.toString()}
                 renderItem={({ item }) => (
                     <IngredientListItem ingredient={item} />
                 )}
+                style={styles.list}
             />
         </View>
     );

@@ -7,6 +7,7 @@ import ambrosiaConfig from "../../ambrosia.config";
 import axios, { AxiosResponse, AxiosError } from "axios";
 import { useState } from "react";
 import { Text, View } from "react-native";
+import { styles } from "../../styles";
 
 // Could use props here...
 export const HomeSplash = () => {
@@ -24,9 +25,9 @@ export const HomeSplash = () => {
     );
 
     return (
-        <View>
-            <Text>Welcome to Ambrosia!</Text>
-            <Text>The server connection is {isServerUp ? 'good' : 'bad'}!</Text>
+        <View style={{ alignItems: "center", }}>
+            <Text style={styles.h1}>Welcome to Ambrosia!</Text>
+            <Text style={styles.italics}>The server connection is {isServerUp ? 'good' : 'bad'}!</Text>
         </View>
     );
 }

@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native";
 import { ApolloClient, ApolloClientOptions, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import ambrosiaConfig from "./ambrosia.config";
@@ -17,12 +17,12 @@ const client = new ApolloClient({
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <View style={styles.container}>
+      <ScrollView style={styles.scrollContainer}>
         <HomeSplash></HomeSplash>
         <NewIngredientForm></NewIngredientForm>
         <IngredientList></IngredientList>
         <StatusBar style="auto" />
-      </View>
+      </ScrollView>
     </ApolloProvider>
   );
 }
