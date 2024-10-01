@@ -1,29 +1,73 @@
-import { StatusBar } from "expo-status-bar";
-import { ScrollView } from "react-native";
-import { ApolloClient, ApolloClientOptions, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator, NativeStackNavigationOptions } from "@react-navigation/native-stack";
+import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import ambrosiaConfig from "./ambrosia.config";
 
-import { HomeSplash } from "./src/components/HomeSplash";
-import { IngredientList } from "./src/components/IngredientList";
-import { NewIngredientForm } from "./src/components/NewIngredientForm";
+import { CookbookScreen } from "./src/screens/CookbookScreen";
+import { ExploreScreen } from "./src/screens/ExploreScreen";
+import { NewIngredientScreen } from "./src/screens/NewIngredientScreen";
+import { Text } from "react-native";
 import { styles } from "./styles";
 
+// GraphQL client
 const client = new ApolloClient({
   uri: `${ambrosiaConfig.BACKEND_URL}/graphql`,
   cache: new InMemoryCache()
-})
+});
+
+// We want to use a consistent navbar for all of the tabs
+const screenNavigationOptions: NativeStackNavigationOptions = {
+  headerTitle: "ambrosia",
+  headerTitleAlign: "center",
+  headerTitleStyle: styles.logo,
+  headerTintColor: "#EDEBD7",
+  headerStyle: styles.navBar,
+  headerRight: () => (<Text style={styles.navbarItem}>Profile</Text>)
+}
+
+// Explore section for searching and discovering new recipes
+const ExploreStack = createNativeStackNavigator();
+const ExploreStackScreen = () => {
+  return (
+    <ExploreStack.Navigator screenOptions={screenNavigationOptions} initialRouteName="ExploreHome">
+      <ExploreStack.Screen name="ExploreHome" component={ExploreScreen} />
+    </ExploreStack.Navigator>
+  );
+}
+
+// Cookbook section for reviewing saved recipes
+const CookbookStack = createNativeStackNavigator();
+const CookbookStackScreen = () => {
+  return (
+    <CookbookStack.Navigator screenOptions={screenNavigationOptions} initialRouteName="CookbookHome">
+      <CookbookStack.Screen name="CookbookHome" component={CookbookScreen} />
+      <CookbookStack.Screen name="NewIngredient" component={NewIngredientScreen} />
+    </CookbookStack.Navigator>
+  );
+}
+
+// Tab navigator
+const Tab = createBottomTabNavigator();
+const tabOptions: BottomTabNavigationOptions = {
+  headerShown: false,
+  tabBarStyle: styles.tabBar,
+  tabBarActiveTintColor: "#E3B23C",
+  tabBarInactiveTintColor: "#EDEBD7",
+  tabBarItemStyle: { paddingBottom: 10 },
+}
 
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <ScrollView style={styles.scrollContainer}>
-        <HomeSplash></HomeSplash>
-        <NewIngredientForm></NewIngredientForm>
-        <IngredientList></IngredientList>
-        <StatusBar style="auto" />
-      </ScrollView>
-    </ApolloProvider>
+      <NavigationContainer>
+        <Tab.Navigator screenOptions={tabOptions} >
+          <Tab.Screen name="Explore" component={ExploreStackScreen} />
+          <Tab.Screen name="Cookbook" component={CookbookStackScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </ApolloProvider >
   );
 }
 

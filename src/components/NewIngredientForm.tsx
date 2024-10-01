@@ -11,10 +11,13 @@ import { ErrorMessage } from "./ErrorMessage";
 import { Pressable, Text, View } from "react-native";
 import { styles } from "../../styles";
 import { INGREDIENTS } from "../gql/queries";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 
 export const NewIngredientForm = () => {
     const [createIngredient, { loading, error }] = useMutation(CREATE_INGREDIENT, { refetchQueries: [{ query: INGREDIENTS }] });
     const { control, handleSubmit, formState } = useForm<NewIngredient>();
+    const navigation = useNavigation();
 
     if (loading) return <Loading />;
     if (error) return <ErrorMessage message={error.message} />
@@ -23,6 +26,8 @@ export const NewIngredientForm = () => {
         createIngredient({ variables: { input: newIngredientInput } })
             .then(res => {
                 console.log(res);
+                // TODO: Should log some successfull message when we go back as well...
+                navigation.goBack();
             })
             .catch(err => {
                 console.log(err);

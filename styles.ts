@@ -5,16 +5,36 @@ const { width, height } = Dimensions.get("window");
 const scaleFontSize = (size: number) => (width / 375) * size;
 
 export const styles = StyleSheet.create({
+    navBar: {
+        backgroundColor: "#423E37",
+    },
+    tabBar: {
+        backgroundColor: "#423E37",
+        padding: 5,
+    },
+    tabBarItem: {
+        padding: 5,
+    },
+    navbarItem: {
+        justifyContent: "center",
+        alignContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        flex: 1,
+        padding: 15,
+        color: "#EDEBD7"
+    },
     container: {
         flex: 1,
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
-        padding: 25,
+        padding: 0,
+        margin: 0,
     },
     scrollContainer: {
         backgroundColor: "#fff",
-        padding: 25,
+        padding: 0,
         flex: 1,
     },
     input: {
@@ -33,12 +53,13 @@ export const styles = StyleSheet.create({
         alignContent: "center",
         textAlign: "center",
         justifyContent: "center",
-        backgroundColor: "#000",
-        color: "#fff",
+        backgroundColor: "#423E37",
+        color: "#EDEBD7",
     },
     list: {
-        height: height / 2.5,
+        height: height / 2,
         borderWidth: 1,
+        backgroundColor: "#DFF8EB"
     },
     listItem: {
         borderWidth: 0.5,
@@ -50,6 +71,11 @@ export const styles = StyleSheet.create({
     },
     italics: {
         fontStyle: "italic"
+    },
+    logo: {
+        fontSize: scaleFontSize(24),
+        fontWeight: "bold",
+        color: "#E3B23C"
     },
     h1: {
         fontSize: scaleFontSize(28),
