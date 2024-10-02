@@ -1,16 +1,13 @@
 // Example component to help showcase how code base should be organized
 
+import ambrosiaConfig from "../../ambrosia.config";
+
 // Use Axios for HTTP requests
 // TODO: Create an instance for the client to use a consistent configuration
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 import { useState } from "react";
-import { Platform, Text } from "react-native";
-
-// TODO: Better use of constants/config
-const BACKEND_PORT = 8080
-// Android exposes the host machine's localhost as '10.0.2.2'
-const BACKEND_BASE_URL = Platform.OS == "android" ? "http://10.0.2.2" : "http://localhost"
-const BACKEND_URL = `${BACKEND_BASE_URL}:${BACKEND_PORT}`
+import { Text, View } from "react-native";
+import { styles } from "../../styles";
 
 // Could use props here...
 export const HomeSplash = () => {
@@ -18,21 +15,19 @@ export const HomeSplash = () => {
     const [isServerUp, setIsServerUp] = useState(false);
 
     // TODO: More graceful way to handle the async/promise stuff here?
-    var serverUp = false;
-    axios.get(`${BACKEND_URL}/heartbeat`).then(
-        (response: AxiosResponse) => {
-            // TODO: Don't log this in prod!
-            console.log(response);
+    axios.get(`${ambrosiaConfig.BACKEND_URL}/heartbeat`).then(
+        (_: AxiosResponse) => {
             setIsServerUp(true);
         },
-        (error) => {
-            // TODO: Don't log this in prod!
-            console.log(error);
+        (_: AxiosError) => {
             setIsServerUp(false);
         }
     );
 
     return (
-        <Text>The server connection is: {isServerUp ? 'good' : 'bad'}!</Text>
+        <View style={{ alignItems: "center", }}>
+            <Text style={styles.h1}>Welcome to Ambrosia!</Text>
+            <Text style={styles.italics}>The server connection is {isServerUp ? 'good' : 'bad'}!</Text>
+        </View>
     );
 }

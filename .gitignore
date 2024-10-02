@@ -10,6 +10,7 @@ web-build/
 
 # Android
 .idea/
+%ProgramData%
 
 # Native
 *.orig.*
@@ -33,6 +34,7 @@ yarn-error.*
 
 # local env files
 .env*.local
+.env
 
 # typescript
 *.tsbuildinfo
