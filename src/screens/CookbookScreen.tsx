@@ -5,8 +5,13 @@ import { IngredientList } from "../components/IngredientList";
 import { BaseScreen } from "./BaseScreen";
 import { styles } from "../../styles";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ParamListBase } from "@react-navigation/native";
 
-export const CookbookScreen = ({ navigation }: { navigation: NativeStackNavigationProp<any> }) => {
+type CookBookScreenProps = {
+    navigation: NativeStackNavigationProp<ParamListBase>;
+}
+
+export const CookbookScreen = ({ navigation }: CookBookScreenProps) => {
     return (
         <BaseScreen>
             <IngredientList />

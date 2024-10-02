@@ -11,3 +11,11 @@ export type Ingredient = {
     description: string;
     user: User;
 }
+
+export type Recipe = {
+    recipeId: number;
+    name: string;
+    description: string;
+    user: User;
+    ingredients: Ingredient[];
+}

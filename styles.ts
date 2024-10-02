@@ -57,7 +57,6 @@ export const styles = StyleSheet.create({
         color: "#EDEBD7",
     },
     list: {
-        height: height / 2,
         borderWidth: 1,
         backgroundColor: "#DFF8EB"
     },

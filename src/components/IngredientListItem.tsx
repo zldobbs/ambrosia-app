@@ -4,7 +4,11 @@ import { Text, View } from "react-native";
 import { Ingredient } from "../gql/types"
 import { styles } from "../../styles";
 
-export const IngredientListItem = ({ ingredient }: { ingredient: Ingredient }) => {
+type IngredientListItemProps = {
+    ingredient: Ingredient;
+}
+
+export const IngredientListItem = ({ ingredient }: IngredientListItemProps) => {
     return (
         <View style={styles.listItem}>
             <Text style={styles.bold}>{ingredient.name}</Text>

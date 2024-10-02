@@ -3,15 +3,17 @@
 import { StatusBar } from "expo-status-bar";
 import { View, ScrollView } from "react-native";
 import { styles } from "../../styles";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-// TODO: Update all of these props to use interfaces!
-export const BaseScreen = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
+type BaseScreenProps = {
+    children: JSX.Element | JSX.Element[];
+}
+
+export const BaseScreen = ({ children }: BaseScreenProps) => {
     return (
-        <View style={styles.container}>
-            <ScrollView style={styles.scrollContainer}>
-                {children}
-                <StatusBar style="auto" />
-            </ScrollView>
-        </View>
+        <ScrollView style={styles.scrollContainer}>
+            {children}
+            <StatusBar style="auto" />
+        </ScrollView>
     );
 }

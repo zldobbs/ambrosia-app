@@ -10,6 +10,8 @@ import { ExploreScreen } from "./src/screens/ExploreScreen";
 import { NewIngredientScreen } from "./src/screens/NewIngredientScreen";
 import { Text } from "react-native";
 import { styles } from "./styles";
+import { RecipeScreen } from "./src/screens/RecipeScreen";
+import { Recipe } from "./src/gql/types";
 
 // GraphQL client
 const client = new ApolloClient({
@@ -27,12 +29,25 @@ const screenNavigationOptions: NativeStackNavigationOptions = {
   headerRight: () => (<Text style={styles.navbarItem}>Profile</Text>)
 }
 
+// FIXME: This is getting ugly
+type RecipeData = {
+  recipe: Recipe;
+}
+
+// FIXME: Reconsider the navigation setup
+//        Will the recipe screen be able to reuse between explore/cookbook? is that okay?
+export type ExploreStackParamList = {
+  ExploreHome: undefined;
+  ExploreRecipe: RecipeData;
+}
+
 // Explore section for searching and discovering new recipes
-const ExploreStack = createNativeStackNavigator();
+const ExploreStack = createNativeStackNavigator<ExploreStackParamList>();
 const ExploreStackScreen = () => {
   return (
     <ExploreStack.Navigator screenOptions={screenNavigationOptions} initialRouteName="ExploreHome">
       <ExploreStack.Screen name="ExploreHome" component={ExploreScreen} />
+      <ExploreStack.Screen name="ExploreRecipe" component={RecipeScreen} />
     </ExploreStack.Navigator>
   );
 }

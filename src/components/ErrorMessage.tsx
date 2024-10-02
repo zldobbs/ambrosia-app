@@ -2,7 +2,11 @@
 
 import { Text } from "react-native";
 
-export const ErrorMessage = ({ message }: { message: string }) => {
+type ErrorMessageProps = {
+    message: string;
+}
+
+export const ErrorMessage = ({ message }: ErrorMessageProps) => {
     return (
         <Text style={{ color: "red" }}>Error! {message}</Text>
     );

@@ -15,3 +15,27 @@ export const INGREDIENTS = gql`
         }
     }
 `
+
+export const RECIPES = gql`
+    query Recipes {
+        recipes {
+            recipeId
+            name
+            description
+            user {
+                userId
+                name
+            }
+            ingredients {
+                ingredientId
+                name
+                description
+                user {
+                    userId
+                    name
+                }
+            }
+        }
+
+    }
+`
