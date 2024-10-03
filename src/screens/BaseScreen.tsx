@@ -1,7 +1,7 @@
 // Base screen intended for re-use by other screens
 
 import { StatusBar } from "expo-status-bar";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import { styles } from "../../styles";
 
 type BaseScreenProps = {
@@ -10,9 +10,9 @@ type BaseScreenProps = {
 
 export const BaseScreen = ({ children }: BaseScreenProps) => {
     return (
-        <ScrollView style={styles.scrollContainer}>
+        <View style={styles.container}>
             {children}
             <StatusBar style="auto" />
-        </ScrollView>
+        </View>
     );
 }

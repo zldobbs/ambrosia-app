@@ -4,7 +4,6 @@
 import { CompositeScreenProps } from "@react-navigation/native";
 import { NavigatorScreenParams } from "@react-navigation/native";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { Recipe } from "../gql/types";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 // map route : params for routes shared between multiple navigators
