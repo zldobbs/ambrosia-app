@@ -14,7 +14,7 @@ export const INGREDIENTS = gql`
             }
         }
     }
-`
+`;
 
 export const RECIPES = gql`
     query Recipes {
@@ -36,6 +36,28 @@ export const RECIPES = gql`
                 }
             }
         }
-
     }
-`
+`;
+
+export const RECIPE_BY_ID = gql`
+    query RecipeById($recipeId: ID!) {
+        recipeById(recipeId: $recipeId) {
+            recipeId
+            name
+            description
+            user {
+                userId
+                name
+            }
+            ingredients {
+                ingredientId
+                name
+                description
+                user {
+                    userId
+                    name
+                }
+            }
+        }
+    }
+`;

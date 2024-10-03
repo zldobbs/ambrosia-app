@@ -3,14 +3,14 @@
 export type User = {
     userId: number;
     name: string;
-}
+};
 
 export type Ingredient = {
     ingredientId: number;
     name: string;
     description: string;
     user: User;
-}
+};
 
 export type Recipe = {
     recipeId: number;
@@ -18,4 +18,4 @@ export type Recipe = {
     description: string;
     user: User;
     ingredients: Ingredient[];
-}
+};

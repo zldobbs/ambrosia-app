@@ -11,13 +11,14 @@ type RecipeProps = {
 
 export const RecipeDetails = ({ recipe }: RecipeProps) => {
     return (
-        <View>
+        <View style={{ alignItems: "center" }}>
             <Text style={styles.h1}>{recipe.name}</Text>
-            <Text>by {recipe.user.name}</Text>
-            <View>
+            <Text style={styles.italics}>by {recipe.user.name}</Text>
+            <View style={{ margin: 10 }}>
                 <Text>{recipe.description}</Text>
             </View>
             <View>
+                <Text>Required Ingredients:</Text>
                 <FlatList
                     data={recipe.ingredients}
                     keyExtractor={(item) => item.ingredientId.toString()}

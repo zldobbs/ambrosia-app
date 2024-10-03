@@ -1,9 +1,11 @@
 // Denote a component is loading
 
-import { Text } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 
 export const Loading = () => {
     return (
-        <Text>Loading...</Text>
+        <View style={{ margin: 20 }}>
+            <ActivityIndicator size="large" />
+        </View>
     );
 }

@@ -1,7 +1,7 @@
 // TextInput wrapped by react-hook-form hooks
 
 import { Controller, FormState } from "react-hook-form"
-import { Text, TextInput } from "react-native";
+import { Text, TextInput, View } from "react-native";
 import { styles } from "../../styles";
 import { ErrorMessage } from "./ErrorMessage";
 
@@ -16,8 +16,8 @@ type ControlledTextInputProps = {
 // TODO: Need to add better input validation...
 export const ControlledTextInput = ({ name, displayName, defaultValue, control, formState }: ControlledTextInputProps) => {
     return (
-        <>
-            <Text>{displayName}</Text>
+        <View>
+            <Text style={{ textAlign: "left" }}>{displayName}</Text>
             <Controller
                 name={name}
                 control={control}
@@ -35,7 +35,6 @@ export const ControlledTextInput = ({ name, displayName, defaultValue, control, 
             {formState.errors[name] && (
                 <ErrorMessage message={String(formState.errors[name]?.message)} />
             )}
-        </>
-
+        </View>
     );
 }

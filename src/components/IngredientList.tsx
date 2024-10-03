@@ -8,14 +8,10 @@ import { IngredientListItem } from "./IngredientListItem";
 import { INGREDIENTS } from "../gql/queries";
 import { FlatList, Text, View } from "react-native";
 import { styles } from "../../styles";
-import { Ingredient } from "../gql/types";
-
-type IngredientData = {
-    ingredients: Ingredient[];
-}
+import { IngredientsResponse } from "../gql/responses";
 
 export const IngredientList = () => {
-    const { loading, error, data } = useQuery<IngredientData>(INGREDIENTS);
+    const { loading, error, data } = useQuery<IngredientsResponse>(INGREDIENTS);
 
     if (loading) return <Loading />;
     if (error) return <ErrorMessage message={error.message} />;

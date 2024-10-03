@@ -9,42 +9,48 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 // map route : params for routes shared between multiple navigators
 export type SharedStackParamList = {
-    RecipeDetails: { recipe: Recipe };
+    RecipeScreen: { recipeId: string };
 };
 
 // map route : params for ExploreStack navigator
-export type ExploreStackParamList = {
-    ExploreHome: undefined;
+export type ExploreStackNavigatorParamList = {
+    ExploreScreen: undefined;
 } & SharedStackParamList;
 
 // map route : params for CookbookStack navigator
-export type CookbookStackParamList = {
-    CookbookHome: undefined;
-    NewIngredient: undefined;
+export type CookbookStackNavigatorParamList = {
+    CookbookScreen: undefined;
+    NewRecipeScreen: undefined;
+    NewIngredientScreen: undefined;
 } & SharedStackParamList;
 
 export type RootBottomTabNavigatorParamList = {
-    Explore: NavigatorScreenParams<ExploreStackParamList>,
-    Cookbook: NavigatorScreenParams<CookbookStackParamList>,
+    Explore: NavigatorScreenParams<ExploreStackNavigatorParamList>,
+    Cookbook: NavigatorScreenParams<CookbookStackNavigatorParamList>,
 };
 
 export type ExploreScreenProps = CompositeScreenProps<
-    NativeStackScreenProps<ExploreStackParamList, "ExploreHome">,
+    NativeStackScreenProps<ExploreStackNavigatorParamList, "ExploreScreen">,
     BottomTabScreenProps<RootBottomTabNavigatorParamList, "Explore">
 >;
 
 export type CookBookScreenProps = CompositeScreenProps<
-    NativeStackScreenProps<CookbookStackParamList, "CookbookHome">,
+    NativeStackScreenProps<CookbookStackNavigatorParamList, "CookbookScreen">,
+    BottomTabScreenProps<RootBottomTabNavigatorParamList, "Cookbook">
+>;
+
+export type NewRecipeScreenProps = CompositeScreenProps<
+    NativeStackScreenProps<CookbookStackNavigatorParamList, "NewRecipeScreen">,
     BottomTabScreenProps<RootBottomTabNavigatorParamList, "Cookbook">
 >;
 
 export type NewIngredientScreenProps = CompositeScreenProps<
-    NativeStackScreenProps<CookbookStackParamList, "NewIngredient">,
+    NativeStackScreenProps<CookbookStackNavigatorParamList, "NewIngredientScreen">,
     BottomTabScreenProps<RootBottomTabNavigatorParamList, "Cookbook">
 >;
 
 export type RecipeScreenProps = CompositeScreenProps<
-    NativeStackScreenProps<SharedStackParamList, "RecipeDetails">,
+    NativeStackScreenProps<SharedStackParamList, "RecipeScreen">,
     BottomTabScreenProps<RootBottomTabNavigatorParamList>
 >;
 

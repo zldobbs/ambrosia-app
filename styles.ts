@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
     },
     list: {
         borderWidth: 1,
-        backgroundColor: "#DFF8EB"
+        margin: 10
     },
     listItem: {
         borderWidth: 0.5,

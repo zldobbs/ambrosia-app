@@ -1,6 +1,6 @@
 // Simple error message component
 
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 
 type ErrorMessageProps = {
     message: string;
@@ -8,6 +8,8 @@ type ErrorMessageProps = {
 
 export const ErrorMessage = ({ message }: ErrorMessageProps) => {
     return (
-        <Text style={{ color: "red" }}>Error! {message}</Text>
+        <View style={{ margin: 5 }}>
+            <Text style={{ color: "red", textAlign: "center", fontWeight: "bold" }}>Error! {message}</Text>
+        </View>
     );
 }

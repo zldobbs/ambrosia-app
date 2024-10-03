@@ -21,7 +21,7 @@ export const NewIngredientForm = () => {
     if (loading) return <Loading />;
     if (error) return <ErrorMessage message={error.message} />
 
-    const onSubmit: SubmitHandler<NewIngredient> = (newIngredientInput) => {
+    const onSubmit: SubmitHandler<NewIngredient> = (newIngredientInput: NewIngredient) => {
         createIngredient({ variables: { input: newIngredientInput } })
             .then(res => {
                 console.log(res);
