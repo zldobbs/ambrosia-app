@@ -8,18 +8,13 @@ import { ErrorMessage } from "./ErrorMessage";
 import { FlatList, View } from "react-native";
 import { RecipeListItem } from "./RecipeListItem";
 import { styles } from "../../styles";
-import { ParamListBase } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 
 type RecipeData = {
     recipes: Recipe[];
 }
 
-type RecipeListProps = {
-    navigation: NativeStackNavigationProp<ParamListBase>;
-}
-
-export const RecipeList = ({ navigation }: RecipeListProps) => {
+export const RecipeList = () => {
     const { loading, error, data } = useQuery<RecipeData>(RECIPES);
 
     if (loading) return <Loading />;
@@ -32,7 +27,7 @@ export const RecipeList = ({ navigation }: RecipeListProps) => {
                 <FlatList
                     data={recipes}
                     keyExtractor={(item) => item.recipeId.toString()}
-                    renderItem={({ item }) => <RecipeListItem recipe={item} navigation={navigation} />}
+                    renderItem={({ item }) => <RecipeListItem recipe={item} />}
                 />
             </View>
         );

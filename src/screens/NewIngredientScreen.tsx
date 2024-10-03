@@ -1,13 +1,8 @@
-// Default home screen
+// Screen to create a new ingredient
 
-import { ParamListBase } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { NewIngredientForm } from "../components/NewIngredientForm";
 import { BaseScreen } from "./BaseScreen";
-
-type NewIngredientScreenProps = {
-    navigation: NativeStackNavigationProp<ParamListBase>;
-}
+import { NewIngredientScreenProps } from "../navigation/types";
 
 export const NewIngredientScreen = ({ navigation }: NewIngredientScreenProps) => {
     return (

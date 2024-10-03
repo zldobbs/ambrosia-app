@@ -3,18 +3,17 @@
 import { Pressable, Text, View } from "react-native";
 import { Recipe } from "../gql/types";
 import { styles } from "../../styles";
-import { ParamListBase } from "@react-navigation/native";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useNavigation } from "@react-navigation/native";
 
 type RecipeListItemProps = {
     recipe: Recipe;
-    navigation: NativeStackNavigationProp<ParamListBase>;
 }
 
-export const RecipeListItem = ({ recipe, navigation }: RecipeListItemProps) => {
+export const RecipeListItem = ({ recipe }: RecipeListItemProps) => {
+    const navigation = useNavigation();
 
     return (
-        <Pressable onPress={() => navigation.navigate("ExploreRecipe", { recipe })}>
+        <Pressable onPress={() => navigation.navigate("Explore", { screen: "RecipeDetails", params: { recipe } })}>
             <View style={styles.listItem}>
                 <Text style={styles.h4}>{recipe.name}</Text>
                 <Text>{recipe.description}</Text>
