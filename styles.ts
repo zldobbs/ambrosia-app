@@ -25,17 +25,16 @@ export const styles = StyleSheet.create({
         color: "#EDEBD7"
     },
     container: {
+        padding: 0,
+        margin: 5,
         flex: 1,
-        backgroundColor: "#fff",
+    },
+    centerContainer: {
+        padding: 0,
+        margin: 5,
+        flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        padding: 0,
-        margin: 0,
-    },
-    scrollContainer: {
-        backgroundColor: "#fff",
-        padding: 0,
-        flex: 1,
     },
     input: {
         justifyContent: "flex-start",
@@ -43,6 +42,7 @@ export const styles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
+        backgroundColor: "#fff",
     },
     button: {
         borderWidth: 1,
@@ -57,14 +57,15 @@ export const styles = StyleSheet.create({
         color: "#EDEBD7",
     },
     list: {
-        height: height / 2,
         borderWidth: 1,
-        backgroundColor: "#DFF8EB"
+        margin: 10,
+        backgroundColor: "#fff",
     },
     listItem: {
         borderWidth: 0.5,
         margin: 0,
         padding: 5,
+        backgroundColor: "#fff",
     },
     bold: {
         fontWeight: "bold",

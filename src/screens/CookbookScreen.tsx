@@ -1,16 +1,18 @@
-// Default home screen
+// User cookbook
 
 import { Pressable, Text } from "react-native";
 import { IngredientList } from "../components/IngredientList";
 import { BaseScreen } from "./BaseScreen";
 import { styles } from "../../styles";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { CookBookScreenProps } from "../navigation/types";
 
-export const CookbookScreen = ({ navigation }: { navigation: NativeStackNavigationProp<any> }) => {
+export const CookbookScreen = ({ navigation }: CookBookScreenProps) => {
     return (
         <BaseScreen>
-            <IngredientList />
-            <Pressable onPress={() => navigation.navigate("NewIngredient")}>
+            <Pressable onPress={() => navigation.navigate("NewRecipeScreen")}>
+                <Text style={styles.button}>Create New Recipe</Text>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate("NewIngredientScreen")}>
                 <Text style={styles.button}>Create New Ingredient</Text>
             </Pressable>
         </BaseScreen>

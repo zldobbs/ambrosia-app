@@ -8,6 +8,29 @@ export const CREATE_INGREDIENT = gql`
             ingredientId
             name
             description
+            user {
+                userId
+                name
+            }
         }
     }
-`
+`;
+
+export const CREATE_RECIPE = gql`
+    mutation CreateRecipe($input: NewRecipe!) {
+        createRecipe(input: $input) {
+            recipeId
+            name
+            description
+            user {
+                userId
+                name
+            }
+            ingredients {
+                ingredientId
+                name
+                description
+            }
+        }
+    }
+`;

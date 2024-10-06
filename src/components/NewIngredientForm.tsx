@@ -1,7 +1,7 @@
 // Form for creating a new ingredient
 
 import { useMutation } from "@apollo/client";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import { NewIngredient } from "../gql/inputs"
 import { CREATE_INGREDIENT } from "../gql/mutations";
@@ -11,7 +11,6 @@ import { ErrorMessage } from "./ErrorMessage";
 import { Pressable, Text, View } from "react-native";
 import { styles } from "../../styles";
 import { INGREDIENTS } from "../gql/queries";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 
 export const NewIngredientForm = () => {
@@ -22,7 +21,7 @@ export const NewIngredientForm = () => {
     if (loading) return <Loading />;
     if (error) return <ErrorMessage message={error.message} />
 
-    const onSubmit: SubmitHandler<NewIngredient> = (newIngredientInput) => {
+    const onSubmit: SubmitHandler<NewIngredient> = (newIngredientInput: NewIngredient) => {
         createIngredient({ variables: { input: newIngredientInput } })
             .then(res => {
                 console.log(res);
